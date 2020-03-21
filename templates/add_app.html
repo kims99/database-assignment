@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block body %}
+<div>
+
+    <h3>Add A New App</h3>
+    <hr />
+    
+    <form method="POST" action="{{ url_for('add_app') }}">
+
+        {{ form.csrf_token }}
+        {{ form.app_name.label }} {{ form.app_name(size=20) }}
+        {{ form.category.label }} {{ form.category(size=20) }}
+        {{ form.category_rank.label }} {{ form.category_rank(size=3) }}
+        {{ form.app_type.label }} {{ form.app_type(size=5) }}
+        {{ form.total_ratings.label }} {{ form.total_ratings(size=15) }}
+
+        <input type="submit" value="Add New App"> 
+
+    </form>
+
+</div>
+{% endblock %}
