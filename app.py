@@ -4,6 +4,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, IntegerField
 from wtforms.validators import DataRequired
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import or_
 import pymysql
 import secrets
 
@@ -38,6 +39,20 @@ class MobileAppForm(FlaskForm):
 def index():
     all_apps = ksouravong_apps.query.all()
     return render_template('index.html', apps=all_apps, pageTitle='Mobile Apps')
+
+
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    if request.method == 'POST':
+        print('post method')
+        form = request.form
+        search_value = form['search_string']
+        search = "%{0}%".format(search_value)
+        results = ksouravong_apps.query.filter(or_(ksouravong_apps.app_name.like(search),
+                                                ksouravong_apps.category.like(search))).all()
+        return render_template('index.html', apps=results, pageTitle='Mobile Apps', legend="Search Results")
+    else:
+        return redirect("/")
 
 
 @app.route('/add_app', methods=['GET', 'POST'])
