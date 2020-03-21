@@ -1,14 +1,6 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<p><a href="{{ url_for('index')}}"> Home </a></p>
-<p><a href="{{ url_for('.add_app')}}"> Add a new app</a>
-
-<form method="POST">
-    <input type="text" autofocus="autofocus" name="search_string">
-    <input type="submit" formaction="/search" value="Search">
-</form>
-
 
     <h3>{{ legend }}</h3>
 {% if apps %}
@@ -20,6 +12,7 @@
                 <th>Category Rank</th>
                 <th>Free/Paid</th>
                 <th>Number of Ratings</th>
+                <th>Edit</th>
             </tr>
         </thead>
 

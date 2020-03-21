@@ -9,6 +9,15 @@
 
   <body>
     <h1>Mobile Apps</h1>
+    <div class="topnav">
+      <a href="{{ url_for('index')}}"> Home </a>
+      <a href="{{ url_for('.add_app')}}"> Add New App</a>
+      <form method="POST">
+        <input type="text" autofocus="autofocus" name="search_string" placeholder="App Name or Category">
+        <input type="submit" formaction="/search" value="Search">
+    </form>
+    </div>
+  
 
       {% block body %}
 
