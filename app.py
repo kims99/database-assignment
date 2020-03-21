@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template, redirect
+from flask import render_template, redirect, request
 from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.validators import DataRequired
@@ -48,6 +48,17 @@ def add_app():
         return redirect('/')
 
     return render_template('add_app.html', form=form, pageTitle='Add New App')
+
+@app.route('/delete_app/<int:app_id>', methods=['GET', 'POST'])
+def delete_app(app_id):
+    if request.method == 'POST':
+        app = ksouravong_apps.query.get_or_404(app_id)
+        db.session.delete(app)
+        db.session.commit()
+        return redirect("/")
+    else:
+        return redirect("/")
+
 
 if __name__ == '__main__':
     app.run(debug=True)
