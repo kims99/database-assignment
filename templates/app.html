@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block body %}
+<div>
+    <p><a href="{{ url_for('index')}}"> Home </a></p>
+
+    <h3>{{ legend }}</h3>
+    <hr />
+    
+    {%if form %}
+    <form method="POST" action="">
+
+        {{ form.csrf_token }}
+        {{ form.app_id.label }} {{ form.app_id }}
+        {{ form.app_name.label }} {{ form.app_name }}
+        {{ form.category.label }} {{ form.category }}
+        {{ form.category_rank.label }} {{ form.category_rank }}
+        {{ form.app_type.label }} {{ form.app_type }}
+        {{ form.total_ratings.label }} {{ form.total_ratings }}
+
+        <input type="submit" formaction="{{ url_for('update_app', app_id=form.app_id) }}" value="Update"> 
+        <input type="submit" formaction="{{ url_for('delete_app', app_id=form.app_id) }}" value="Delete"> 
+    
+    </form>
+    {% endif %}
+
+</div>
+{% endblock %}

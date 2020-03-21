@@ -8,7 +8,6 @@
     <table>
         <thead>
             <tr>
-                <th>App ID</th>
                 <th>Application Name</th>
                 <th>Category</th>
                 <th>Category Rank</th>
@@ -20,7 +19,6 @@
         <tbody>
                 {% for row in apps %}
                 <tr>
-                    <td> {{row.app_id}} </td>
                     <td> {{row.app_name}} </td>
                     <td> {{row.category}} </td>
                     <td> {{row.category_rank}} </td>
@@ -28,8 +26,8 @@
                     <td> {{row.total_ratings}} </td>
 
                     <td>
-                        <form action="{{ url_for('delete_app', app_id=row.app_id) }}" method="POST">
-                            <input type="submit" value="Delete" />
+                        <form action="{{ url_for('get_app', app_id=row.app_id) }}" method="POST">
+                            <input type="submit" value="Details" />
                         </form>
 
                     </td>
