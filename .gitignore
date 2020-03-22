@@ -1,4 +1,5 @@
 #Virtual Environment
+venv/
 
 # Secrets file with database connection details
 secrets.py
